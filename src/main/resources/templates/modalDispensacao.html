@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title=#{criacaoParametro}"/>
+
+	<body role="document">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container-fluid">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOpcaoParametroModal">
+				<span class="glyphicon glyphicon-plus"></span> <span th:text="#{adicionarOpcaoParametro}"></span>
+		    </button>
+		    
+			<div id="addOpcaoParametroModal" class="modal" tabindex="-1" role="dialog"
+				 aria-labelledby="addOpcaoParametroModalLabel" aria-hidden="false">
+		        <div class="modal-dialog modal-lg">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		                    <h4 class="modal-title" id="addOpcaoParametroModalLabel" th:text="#{adicionarOpcaoParametro}"></h4>
+		                </div>
+		                
+		                <div class="modal-body">
+		                	<form id="opcaoParametroForm" class="form-horizontal"
+		                		  th:object="${pedidoDispensacao}"
+		                		  th:action="@{/createParametro/adicionarOpcaoParametro}"
+		                		  data-bv-feedbackicons-valid="glyphicon glyphicon-ok" 
+			  					  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+			  					  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+								
+						        <div th:replace="fragments/layout :: text-field(name='descricaoOpcaoParametro', label=#{descricao}, 
+												 field=registroHC, required=true, maxLength=200, autofocus=true)"></div>
+				                
+				                <div th:replace="fragments/layout :: modal-group-button-footer(name=adicionarOpcaoParametro)"></div>
+		                	</form>
+		                </div>
+		                
+		            </div>
+		        </div>
+		    </div>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+	</body>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#parametroForm').bootstrapValidator({
+		    	
+		    });
+		});
+		
+		$(document).ready(function() {
+		    $('#opcaoParametroForm').bootstrapValidator({
+// 		        excluded: [':disabled'],
+		    });
+		});
+	</script>
+</html>

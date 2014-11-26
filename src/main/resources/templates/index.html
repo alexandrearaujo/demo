@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title='Dispensação de Medicamentos'"/>
+
+	<body>
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container">
+			<!-- Main jumbotron for a primary marketing message or call to action -->
+			<div class="jumbotron">
+				<h1>
+					<label th:text="Olá"></label>
+				</h1>
+				<p class="lead">Bem vindo ao Sistema de dispensação de medicamentos do Hospital das Clínicas de São Paulo.</p>
+				<p>
+					<a href="#" class="btn btn-primary btn-lg" role="button">Saiba mais &raquo;</a>
+				</p>
+			</div>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer" id="footer" class="footer"></div>
+	</body>
+</html>

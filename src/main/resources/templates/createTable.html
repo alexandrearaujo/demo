@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title=#{criacaoTabela}"/>
+
+	<body role="document">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container-fluid">
+			<div class="row-fluid row-content"> 
+	            <!-- Breadcrumb -->
+	            <ul class="breadcrumb">
+	              <li><a href="#">Home</a> <span class="divider"></span></li>
+	              <li><span th:text="#{criar}"></span> <span class="divider"></span></li>
+	              <li class="active"><span th:text="#{tabela}"></span></li>
+           		</ul>
+       		</div>
+         		
+			<form class="form-horizontal" action="#" th:action="@{/createTable}" th:object="${createTableForm}" th:method="post" id="tableForm"
+				  data-bv-feedbackicons-valid="glyphicon glyphicon-ok" 
+				  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+				  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+				<fieldset>
+					<legend th:text="#{tabela}"></legend>
+					<div th:replace="fragments/layout :: text-field(name='tableName', label=#{tableName},
+									 field=createTableChange.tableName, required=true, maxLength=30, autofocus=true)"></div>
+					
+					<div th:replace="fragments/layout :: text-field(name='remarks', label=#{comentario}, field=createTableChange.remarks, required=true)"></div>
+					
+					<div th:replace="fragments/layout :: text-field(name='schemaName', label=#{schema}, field=createTableChange.schemaName, required=true)"></div>
+					
+					<div th:replace="fragments/layout :: text-field(name='tablespace', label=#{tablespace}, field=createTableChange.tablespace, required=true)"></div>
+
+				    <div id="columnModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="columnModalLabel" aria-hidden="true">
+				        <div class="modal-dialog modal-lg">
+				            <div class="modal-content">
+				                <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				                    <h4 class="modal-title" id="columnModalLabel" th:text="#{adicionarColuna}"></h4>
+				                </div>
+				                
+				                <div class="modal-body">
+									<div th:replace="fragments/layout :: text-field(name='columnName', label=#{name}, 
+													 field=columnConfig.name, required=true, maxLength=30, autofocus=true)"></div>
+									
+									<div th:replace="fragments/layout :: text-field(name='columnRemarks', label=#{comentario}, field=columnConfig.remarks)"></div>
+									
+									<div th:replace="fragments/layout :: text-field(name='columnType', label=#{type}, field=columnConfig.type, placeholder='VARCHAR2(255)')"></div>
+									
+									<div th:replace="fragments/layout :: text-field(name='columnDefaultValue', label=#{defaultValue}, field=columnConfig.defaultValue)"></div>
+									
+									<div th:replace="fragments/layout :: checkbox-field(name='columnConstraintsNullable', label=#{nullable}, field=columnConfig.nullable)"></div>
+									
+									<div th:replace="fragments/layout :: checkbox-field(name='columnConstraintsPrimaryKey', label=#{isPrimaryKey},
+													 field=columnConfig.primaryKey)"></div>
+									
+							        <div th:replace="fragments/layout :: text-field(name='columnConstraintsPrimaryKeyName', label=#{primaryKeyName},
+							        				 maxLength=30, field=columnConfig.constraints.primaryKeyName, placeholder='CNT_(TABELA)_PK')"></div>
+									
+									<div th:replace="fragments/layout :: checkbox-field(name='columnConstraintsUnique', label=#{isUnique}, field=columnConfig.unique)"></div>
+									
+						            <div th:replace="fragments/layout :: text-field(name='columnConstraintsUniqueName', label=#{uniqueName}, 
+						            				maxLength=30, field=columnConfig.constraints.uniqueConstraintName, placeholder='CNT_(TABELA)_(SEQUENCIAL 1,2,3...)_UK')"></div>
+									
+							        <div th:replace="fragments/layout :: text-field(name='columnConstraintsForeignKeyName', label=#{foreignKeyName},
+							        				 maxLength=30, field=columnConfig.constraints.foreignKeyName, placeholder='CNT_(TABELA ORIGEM)_(TABELA DESTINO)_FK')"></div>
+							           
+						            <div th:replace="fragments/layout :: text-field(name='columnConstraintsReferences', label=#{references}, 
+						            				 field=columnConfig.constraints.references, placeholder='TABELA(COLUNA)')"></div>
+									
+									<div th:replace="fragments/layout :: text-field(name='columnConstraintsCheckConstraint', label=#{checkConstraint}, 
+													 field=columnConfig.constraints.checkConstraint)"></div>
+				                </div>
+				                
+				                <div th:replace="fragments/layout :: modal-group-button-footer(name=adicionarColuna)"></div>
+				            </div>
+				        </div>
+				    </div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Colunas</legend>
+					<div class="table-responsive">
+						<table class="table table-condensed table-bordered table-striped table-hover">
+							<thead>
+								<tr class="info">
+									<th>#</th>
+									<th th:text="#{name}"></th>
+									<th th:text="#{comentario}"></th>
+									<th th:text="#{type}"></th>
+									<th>
+										<button type="button" class="btn btn-primary"
+												data-toggle="modal"	data-target="#columnModal">
+												<span class="glyphicon glyphicon-plus"></span> <span th:text="#{adicionarColuna}"></span>
+									    </button>
+									</th>
+								</tr>
+							</thead>
+
+							<tbody th:remove="all-but-first">
+								<tr th:each="column : *{createTableChange.columns}">
+									<td th:text="${columnStat.count}"></td>
+									<td th:text="${column.name}"></td>
+									<td th:text="${column.remarks}"></td>
+									<td th:text="${column.type}"></td>
+									<td>
+										<button type="submit" role="button" name="removerColuna"
+												class="btn btn-danger" th:value="${columnStat.index}">
+										  		<span class="glyphicon glyphicon-remove"></span> <span th:text="#{removerColunaS}"></span>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Sequence</legend>
+					<div th:replace="fragments/layout :: text-field(name='sequenceName',
+									 label=#{name}, field=createSequenceChange.sequenceName, maxLength=30)"></div>
+					
+					<div th:replace="fragments/layout :: text-field(name='sequenceSchemaName', label=#{schema}, 
+									 field=createSequenceChange.schemaName, maxLength=30, required=true)"></div>
+				</fieldset>
+				
+				<div th:replace="fragments/layout :: group-button"></div>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+	</body>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#tableForm').bootstrapValidator({
+		    	
+		    });
+		});
+	</script>
+</html>
