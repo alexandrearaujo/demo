@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title=Dispensação"/>
+
+	<body role="document" data-spy="scroll" data-target=".navbar-fixed-top">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container-fluid">
+<!-- 			<div class="row-fluid row-content">  -->
+<!-- 	            Breadcrumb -->
+<!-- 	            <ul class="breadcrumb"> -->
+<!-- 	              <li><a href="#">Home</a> <span class="divider"></span></li> -->
+<!-- 	              <li><span th:text="#{criar}"></span> <span class="divider"></span></li> -->
+<!-- 	              <li class="active"><span th:text="#{tabela}"></span></li> -->
+<!--            		</ul> -->
+<!--        		</div> -->
+         		
+			<form class="form" role="form" action="#" id="dispensacaoForm"
+				  data-bv-feedbackicons-valid="glyphicon glyphicon-ok" th:object="${pedidoDispensacao}"
+				  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+				  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+				<fieldset>
+					<div class="row">
+						<div class="col-sm-2">
+							<div class="form-group" th:fragment="text-field">
+								<label class="control-label" for="receita">
+									<span th:text="#{receita}"></span>
+									<span th:class="span-red" th:text="'*'"></span>
+									<i class="fa fa-barcode"></i>
+								</label>
+								
+								<div>
+									<input type="text" class="form-control" th:id-name="receita" th:field="*{id}" th:maxlength="30"
+										   th:autofocus="autofocus" th:attr="data-bv-notempty=true" th:placeholder="'1/1462366'"/> 
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: text-field(name='tableName', label=#{registroHC}, field=registroHC,
+											 required=true, maxLength=30)"></div>
+						</div>
+						
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: text-field(name='tableName', label=#{numeroAtendimento}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>
+								
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: date-field(name='tableName', label=#{dataConsulta}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>		 
+								
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: date-field(name='tableName', label=#{dataPrescricao}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>		 
+								
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: date-field(name='tableName', label=#{dataReatendimento}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>		 
+  					</div>
+  					
+  					<div class="row">
+  						<div class="col-lg-6">
+							<div th:replace="fragments/layout :: text-field(name='tableName', label=#{nomePaciente}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>
+						
+						<div class="col-sm-2">
+							<div th:replace="fragments/layout :: date-field(name='tableName', label=#{idade}, field=registroHC,
+											 maxLength=30)"></div>
+						</div>
+						
+						<div class="col-sm-2">
+							<div class="form-group">
+								<label class="control-label">
+									<span th:text="Sexo"></span>
+								</label>
+								
+								<div>
+	                                <label>
+	                                    <input type="radio" class="form-group " name="optionsRadios" id="input-3" value="option1" checked="checked" th:text="Masculino"/>
+	                                </label>
+                            
+	                                <label>
+	                                    <input type="radio" class="form-group" name="optionsRadios" id="input-4" value="option3" th:text="Feminino"/>
+	                                </label>
+							 	</div>
+							</div>
+						</div>
+  					</div>
+  					
+  					<div>
+				      <ul class="nav nav-tabs">
+				        <li class="active"><a href="#dispensacaoTab" data-toggle="tab">Dispensação</a></li>
+				        <li><a href="#transcricaoTab" data-toggle="tab">Transcrição</a></li>
+				      </ul>
+				      <div class="tabbable">
+				        <div class="tab-content">
+				          <div class="tab-pane active" id="dispensacaoTab">
+				            <div class="table-responsive">
+								<table class="table table-condensed table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th th:text="#{medicamento}"></th>
+											<th th:text="#{saldoAnterior}"></th>
+											<th th:text="#{requisitado}"></th>
+											<th th:text="#{atendido}"></th>
+											<th th:text="#{saldoEstoque}"></th>
+											<th th:text="#{unidade}"></th>
+											<th th:text="#{quantidade}"></th>
+										</tr>
+									</thead>
+			
+									<tbody>
+										<tr>
+											<td>1</td>
+                                            <td>KIT PAUBACILAR kit 1 kit cáps/comp - NOVARTIS</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>kit cáp</td>
+                                            <td>1</td>
+                                        </tr>
+                                        
+										<tr>
+											<td>2</td>
+                                            <td>KIT MULTIBACILAR kit 1 kit cáps/comp - NOVARTIS</td>
+                                            <td>0</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>0</td>
+                                            <td>kit cáp</td>
+                                            <td>1</td>
+                                        </tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="form-group form-actions">
+								<div class="col-sm-offset-3 col-sm-9">
+					              	<a class="btn btn-app">
+                                        <i class="fa fa-save"></i> Salvar
+                                    </a>
+					                
+					              	<a class="btn btn-app" onclick="history.back(1)">
+                                        <i class="fa fa-ban"></i> Voltar
+                                    </a>
+					          	</div>
+					        </div>
+				          </div>
+				          
+				          <div class="tab-pane" id="transcricaoTab">
+				            <div class="table-responsive">
+								<table class="table table-condensed table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th th:text="#{receita}"></th>
+											<th th:text="#{dataPrescricao}"></th>
+											<th th:text="#{dataAtendimento}"></th>
+											<th th:text="#{situacao}"></th>
+											<th th:text="#{estabelecimentoOrigem}"></th>
+											<th th:text="#{farmaciaAtendimento}"></th>
+										</tr>
+									</thead>
+			
+									<tbody>
+										<tr>
+											<td>1</td>
+                                            <td>1/1462366</td>
+                                            <td>30/01/2013</td>
+                                            <td>22/02/2013</td>
+                                            <td>Entregue</td>
+                                            <td>ICHC</td>
+                                            <td>FAMB CDM</td>
+                                        </tr>
+                                        
+										<tr>
+											<td>2</td>
+                                            <td>Y/70363</td>
+                                            <td>15/01/2013</td>
+                                            <td>04/03/2013</td>
+                                            <td>Espera</td>
+                                            <td>ICHC</td>
+                                            <td>FAMB CDM</td>
+                                        </tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="form-group form-actions">
+								<div class="col-sm-offset-3 col-sm-9">
+					              	<button type="submit" class="btn btn-primary">
+					              		<span class="glyphicon glyphicon-pencil"></span>
+					              		<span th:text="#{atenderReceita}"></span> 
+					              	</button>
+					              	
+					                <button type="button" class="btn btn-default">
+					                	<span class="glyphicon glyphicon-list-alt"></span>
+					                	<span th:text="#{fichaTecnica}"></span> 
+					                </button>
+					                
+					              	<button type="button" class="btn btn-danger">
+					              		<span class="glyphicon glyphicon-trash"></span>
+					              		<span th:text="#{remover}"></span> 
+					              	</button>
+					              	
+					              	<button type="button" class="btn btn-default">
+					                	<span class="glyphicon glyphicon-list-alt"></span>
+					                	<span th:text="#{historicoAtendimento}"></span> 
+					                </button>
+					              	
+					              	<button type="button" class="btn btn-default">
+					                	<span class="glyphicon glyphicon-calendar"></span>
+					                	<span th:text="#{consultasAgendadas}"></span> 
+					                </button>
+					          	</div>
+					        </div>
+					        
+					        <div class="table-responsive">
+								<table class="table table-condensed table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th th:text="#{medicamento}"></th>
+											<th th:text="#{requisitado}"></th>
+											<th th:text="#{atendido}"></th>
+											<th th:text="#{saldo}"></th>
+											<th th:text="#{unidade}"></th>
+										</tr>
+									</thead>
+			
+									<tbody>
+										<tr>
+											<td>1</td>
+                                            <td>ácido acetilsalicílico 100mg comp.</td>
+                                            <td>12</td>
+                                            <td>0</td>
+                                            <td>26</td>
+                                            <td>comp.</td>
+                                        </tr>
+                                        
+                                        <tr>
+											<td>2</td>
+                                            <td>anlodipino 5mg comp.</td>
+                                            <td>48</td>
+                                            <td>0</td>
+                                            <td>96</td>
+                                            <td>comp.</td>
+                                        </tr>
+                                        
+                                        <tr>
+											<td>3</td>
+                                            <td>azatioprina 50mg comp.</td>
+                                            <td>60</td>
+                                            <td>0</td>
+                                            <td>111</td>
+                                            <td>comp.</td>
+                                        </tr>
+                                        
+                                        <tr>
+											<td>4</td>
+                                            <td>carbonato de cálcio 1.250mg comp.</td>
+                                            <td>24</td>
+                                            <td>0</td>
+                                            <td>53</td>
+                                            <td>comp.</td>
+                                        </tr>
+                                        
+                                        <tr>
+											<td>5</td>
+                                            <td>enalapril 20mg comp.</td>
+                                            <td>24</td>
+                                            <td>0</td>
+                                            <td>52</td>
+                                            <td>comp.</td>
+                                        </tr>
+									</tbody>
+								</table>
+							</div>
+							
+							<div class="form-group form-actions">
+								<div class="col-sm-offset-3 col-sm-9">
+<!-- 					              	<button type="submit" class="btn btn-success"> -->
+<!-- 					              		<span class="glyphicon glyphicon-ok"></span> -->
+<!-- 					              		<span th:text="#{salvar}"></span>  -->
+<!-- 					              	</button> -->
+					              	
+					              	<a class="btn btn-app">
+                                        <i class="fa fa-save"></i> Salvar
+                                    </a>
+					              	
+<!-- 					                <button type="button" class="btn btn-primary"> -->
+<!-- 					                	<span class="glyphicon glyphicon-plus"></span> -->
+<!-- 					                	<span th:text="#{incluir}"></span>  -->
+<!-- 					                </button> -->
+					                
+					                <a class="btn btn-app">
+                                        <i class="fa fa-plus"></i> Incluir
+                                    </a>
+					                
+<!-- 					                <button type="submit" class="btn btn-warning"> -->
+<!-- 					              		<i class="fa fa-edit"></i> -->
+<!-- 					              		<span th:text="#{alterar}"></span>  -->
+<!-- 					              	</button> -->
+					              	
+					              	<a class="btn btn-app">
+                                        <i class="fa fa-edit"></i> Alterar
+                                    </a>
+					                
+<!-- 					              	<button type="button" class="btn btn-danger"> -->
+<!-- 					              		<span class="glyphicon glyphicon-trash"></span> -->
+<!-- 					              		<span th:text="#{excluir}"></span>  -->
+<!-- 					              	</button> -->
+					              	
+					              	<a class="btn btn-app">
+                                        <i class="fa fa-trash"></i> Excluir
+                                    </a>
+					              	
+<!-- 					              	<button type="button" class="btn btn-warning" onclick="history.back(1)"> -->
+<!-- 					              		<span class="glyphicon glyphicon-ban-circle"></span> -->
+<!-- 					              		<span th:text="#{cancelar}"></span>  -->
+<!-- 					              	</button> -->
+
+									<a class="btn btn-app" onclick="history.back(1)">
+                                        <i class="fa fa-ban"></i> Cancelar
+                                    </a>
+					              	
+					                <div class="btn-group">
+<!--                                          <button type="button" class="btn btn-primary"> -->
+<!-- 						                	<span class="glyphicon glyphicon-print"></span> -->
+<!-- 						                	<span th:text="#{imprimir}"></span>  -->
+<!-- 						                </button> -->
+						                
+						                <a class="btn btn-app">
+	                                        <i class="fa fa-print"></i> Imprimir
+	                                    </a>
+	                                    
+                                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                             <span class="caret"></span>
+                                             <span class="sr-only">Toggle Dropdown</span>
+                                         </button>
+                                         <ul class="dropdown-menu" role="menu">
+                                             <li><a href="#">Imprimir Relatório</a></li>
+                                             <li><a href="#">Imprimir Receita</a></li>
+                                             <li class="divider"></li>
+                                             <li><a href="#">Imprimir Histórico</a></li>
+                                         </ul>
+                                     </div>
+					              	
+<!-- 					              	<button type="button" class="btn btn-default"> -->
+<!-- 					                	<span class="glyphicon glyphicon-log-out"></span> -->
+<!-- 					                	<span th:text="#{sair}"></span>  -->
+<!-- 					                </button> -->
+					                
+					                <a class="btn btn-app">
+                                        <i class="fa fa-sign-out"></i> Sair
+                                    </a>
+					          	</div>
+					        </div>
+				          </div>
+				        </div>
+				      </div>
+  					</div>
+				</fieldset>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+	</body>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#dispensacaoForm').bootstrapValidator({
+		    	
+		    });
+		    
+			$('#dispensacaoForm .input-group.date').datepicker({
+			    format: "dd/mm/yyyy",
+			    todayBtn: true,
+			    language: "pt-BR",
+			    autoclose: true,
+			    todayHighlight: true
+			});
+		});
+		
+	</script>
+</html>
