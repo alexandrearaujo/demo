@@ -77,18 +77,25 @@
 						<li>
 							<a class="page-scroll" href="#dispensar" th:href="@{dispensar}">Dispensar</a>
 						</li>
+						
+						<li class="dropdown">
+							<a href="#criar" class="dropdown-toggle" data-toggle="dropdown">Criar <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#listPessoa" th:href="@{listPessoa}">Pessoa</a></li>
+							</ul>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 		
 		<div class="form-group" th:fragment="text-field">
-			<label class="control-label" for="${name}">
+			<label class="control-label col-xs-3" for="${name}">
 				<span th:text="${label}"></span>
 				<span th:class="span-red" th:if="${required}" th:text="'*'"></span>
 			</label>
 			
-			<div>
+			<div class="col-xs-9">
 				<input th:unless="${numRows}" type="text" class="form-control" th:id-name="__${name}__" th:field="*{__${field}__}" th:maxlength="${maxLength}"
 					   th:autofocus="${autofocus}" th:attr="data-bv-notempty=${required}" th:placeholder="${placeholder}"/> 
 					   
@@ -98,12 +105,12 @@
 		</div>
 		
 		<div class="form-group" th:fragment="date-field">
-			<label class="control-label" for="${name}">
+			<label class="control-label col-xs-3" for="${name}">
 				<span th:text="${label}"></span>
 				<span th:class="span-red" th:if="${required}" th:text="'*'"></span>
 			</label>
 			
-			<div class="input-group date">
+			<div class="input-group date col-xs-9">
 			  <input type="date" class="form-control" th:id-name="__${name}__" th:field="*{__${field}__}"
 					 th:autofocus="${autofocus}" th:attr="data-bv-notempty=${required}" th:placeholder="${placeholder}">
 			  	<span class="input-group-addon">

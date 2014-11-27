@@ -110,6 +110,10 @@
 			<artifactId>scala-library</artifactId>
 			<version>LATEST</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 	</dependencies>
 
 	<properties>
@@ -149,6 +153,13 @@
 
 	<repositories>
 		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sontatype Snapshot Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots><enabled>true</enabled></snapshots>
+		</repository>
+		
+		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
 			<url>https://repo.spring.io/snapshot</url>
@@ -156,6 +167,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -165,6 +177,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-snapshots</id>
@@ -174,6 +187,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
+		
 		<pluginRepository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
