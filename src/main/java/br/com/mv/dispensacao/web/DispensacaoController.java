@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.mv.dispensacao.model.PedidoDispensacao;
+
 @Controller
 @ControllerAdvice
 public class DispensacaoController {
@@ -34,6 +36,7 @@ public class DispensacaoController {
 	
 	@RequestMapping(value="/dispensar", method = RequestMethod.GET)
     public String dispensar(Model model) {
+		model.addAttribute("pedidoDispensacao", new PedidoDispensacao());
         return "dispensacao";
     }
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title=#{criacaoPessoa}"/>
+
+	<body role="document">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container">
+			<div class="row-fluid row-content"> 
+	            <!-- Breadcrumb -->
+	            <ul class="breadcrumb">
+	              <li><a href="#">Home</a> <span class="divider"></span></li>
+	              <li><span th:text="#{criar}"></span> <span class="divider"></span></li>
+	              <li class="active"><span th:text="#{pessoa}"></span></li>
+           		</ul>
+       		</div>
+         		
+			<form class="form-horizontal" action="#" th:action="@{/createPessoa}" th:object="${pessoa}" th:method="post" id="pessoaForm"
+				  data-bv-feedbackicons-valid="glyphicon glyphicon-ok" 
+				  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+				  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+				<fieldset>
+					<div th:replace="fragments/layout :: text-field(name='name', label=#{name},
+									 field=name, required=true, autofocus=true)"></div>
+									 
+					<div th:replace="fragments/layout :: date-field(name='birthDate', label=#{birthDate}, field=birthDate)"></div>
+					
+					<div class="form-group">
+						<label class="control-label col-xs-3">
+							<span th:text="Sexo"></span>
+						</label>
+						
+						<div class="col-xs-9">
+                               <label>
+                                   <input type="radio" class="form-control" name="optionsRadios" id="input-3" th:value="*{gender}" checked="checked" th:text="Masculino"/>
+                               </label>
+                          
+                               <label>
+                                   <input type="radio" class="form-control" name="optionsRadios" id="input-4" th:value="*{gender}" th:text="Feminino"/>
+                               </label>
+					 	</div>
+					</div>
+					
+					<div id="contactModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+				        <div class="modal-dialog modal-lg">
+				            <div class="modal-content">
+				                <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				                    <h4 class="modal-title" id="contactModalLabel" th:text="#{adicionarContato}"></h4>
+				                </div>
+				                
+				                <div class="modal-body">
+									<div th:replace="fragments/layout :: text-field(name='email', label=#{email}, 
+													 field=contact.email)"></div>
+									
+									<div th:replace="fragments/layout :: text-field(name='foneNumber', label=#{foneNumber}, field=contact.foneNumber)"></div>
+				                </div>
+				                
+				                <div th:replace="fragments/layout :: modal-group-button-footer(name=adicionarContato)"></div>
+				            </div>
+				        </div>
+				    </div>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Colunas</legend>
+					<div class="table-responsive">
+						<table class="table table-condensed table-bordered table-striped table-hover">
+							<thead>
+								<tr class="info">
+									<th>#</th>
+									<th th:text="#{email}"></th>
+									<th th:text="#{fone}"></th>
+									<th>
+										<button type="button" class="btn btn-primary"
+												data-toggle="modal"	data-target="#contactModal">
+												<span class="glyphicon glyphicon-plus"></span> <span th:text="#{adicionarContato}"></span>
+									    </button>
+									</th>
+								</tr>
+							</thead>
+
+							<tbody th:remove="all-but-first">
+								<tr th:each="contact : *{contacts}">
+									<td th:text="${contactStat.count}"></td>
+									<td th:text="${contact.email}"></td>
+									<td th:text="${contact.foneNumber}"></td>
+									<td>
+										<button type="submit" role="button" name="removerContato"
+												class="btn btn-danger" th:value="${columnStat.index}">
+										  		<span class="glyphicon glyphicon-remove"></span> <span th:text="#{removerContato}"></span>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+				
+				<div th:replace="fragments/layout :: group-button"></div>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+	</body>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#pessoaForm').bootstrapValidator({
+		    	
+		    });
+		    
+		    $('#pessoaForm .input-group.date').datepicker({
+			    format: "dd/mm/yyyy",
+			    todayBtn: true,
+			    language: "pt-BR",
+			    autoclose: true,
+			    todayHighlight: true
+			});
+		});
+	</script>
+</html>
