@@ -36,5 +36,10 @@ public class DispensacaoController {
     public String dispensar(Model model) {
         return "dispensacao";
     }
+	
+	@RequestMapping(value="/chooser", method = RequestMethod.GET)
+	public String chooser(Model model) {
+		return "chooser";
+	}
 
 }
