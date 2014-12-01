@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+	<head th:include="fragments/layout :: htmlhead" th:with="title=#{criacaoPessoa}"/>
+
+	<body role="document">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container-fluid">
+			<div class="row-fluid row-content"> 
+	            <!-- Breadcrumb -->
+	            <ul class="breadcrumb">
+	              <li><a href="#">Home</a> <span class="divider"></span></li>
+	              <li><span th:text="#{criar}"></span> <span class="divider"></span></li>
+	              <li class="active"><span th:text="#{pessoa}"></span></li>
+           		</ul>
+       		</div>
+       		
+       		<form id="pessoaForm" class="form-horizontal" action="#" th:action="@{/createPessoa}" th:object="${pessoa}" th:method="post"
+				  data-bv-feedbackicons-valid="glyphicon glyphicon-ok" 
+				  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+				  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+			    <fieldset>
+					<legend th:text="#{pessoas}"></legend>
+					<div class="table-responsive">
+						<table class="table table-condensed table-bordered table-striped table-hover">
+							<thead>
+								<tr class="info">
+									<th>#</th>
+									<th th:text="#{name}"></th>
+									<th th:text="#{birthDate}"></th>
+									<th th:text="#{editar}"></th>
+								</tr>
+							</thead>
+	
+							<tbody>
+								<tr th:each="pessoa : ${pessoas}">
+									<td th:text="${pessoaStat.count}"></td>
+									<td th:text="${pessoa.name}"></td>
+									<td th:text="${pessoa.birthDate}"></td>
+									<td>
+										<a th:href="@{|/createPessoa/editarPessoa/${pessoa.id}|}" class="btn btn-warning" type="button">
+									  		<span class="glyphicon glyphicon-remove"></span> <span th:text="#{editPessoa}"></span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+				
+				<div class="form-group form-actions" th:fragment="group-button">
+					<div class="col-sm-offset-3 col-sm-9">
+		              	<a th:href="@{|/createPessoa|}" class="btn btn-primary" type="button">
+					  		<span class="glyphicon glyphicon-plus"></span> <span th:text="#{addPessoa}"></span>
+						</a>
+		          	</div>
+		        </div>
+			</form>
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+	</body>
+	
+	<script>
+		$(document).ready(function() {
+		    $('#pessoaForm').bootstrapValidator({
+		    	
+		    });
+		});
+	</script>
+</html>
