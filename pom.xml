@@ -8,8 +8,8 @@
 	<version>1.45.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>dispensacao</name>
+	<description>Projeto de dispensação de medicamentos</description>
 
 	<parent>
 		<groupId>io.spring.platform</groupId>
@@ -110,6 +110,11 @@
 			<artifactId>scala-library</artifactId>
 			<version>LATEST</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+		</dependency>
 	</dependencies>
 
 	<properties>
@@ -149,6 +154,13 @@
 
 	<repositories>
 		<repository>
+			<id>MVProxy</id>
+			<name>MV Proxy Repository</name>
+			<url>http://echo:8081/nexus/content/groups/public</url>
+			<layout>default</layout>
+		</repository>
+		
+		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
 			<url>https://repo.spring.io/snapshot</url>
@@ -156,6 +168,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -165,7 +178,15 @@
 			</snapshots>
 		</repository>
 	</repositories>
+	
 	<pluginRepositories>
+		<pluginRepository>
+			<id>MVProxy</id>
+			<name>MV Proxy Repository</name>
+			<url>http://echo:8081/nexus/content/groups/public</url>
+			<layout>default</layout>
+		</pluginRepository>
+		
 		<pluginRepository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
@@ -174,6 +195,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
+		
 		<pluginRepository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
@@ -183,6 +205,4 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
-
 </project>
