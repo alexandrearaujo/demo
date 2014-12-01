@@ -17,7 +17,7 @@
       - [x] [Documentação](http://getbootstrap.com/components/)
       - [x] [GitHub](https://github.com/twbs/bootstrap)
   - [x] [Spring MVC](http://projects.spring.io/spring-framework/)
-      - [x] [Documentação] (http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
+      - [x] [Documentação](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
       - [x] [GitHub](https://github.com/spring-projects/spring-mvc-showcase)
   - [x] [Spring Data](http://projects.spring.io/spring-data/)
       - [x] [Documentação](http://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
