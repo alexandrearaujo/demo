@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html 
+	lang="pt-BR" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:dt="http://www.thymeleaf.org/dandelion/datatables">
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/ui.jqgrid.css" />
+
+	<head th:include="fragments/layout :: htmlhead" th:with="title=DataGrid"/>
+
+	<body role="document" data-spy="scroll" data-target=".navbar-fixed-top">
+		<div th:replace="fragments/layout :: navbar"></div>
+	
+		<div class="container-fluid">
+			
+		      <div class="row-fluid row-intro">
+		         <div class="span12">
+		            <h3>Enable/disable paging</h3>
+		            <p>
+		               Of course you can completely disable paging.
+		            </p>
+		         </div>
+		      </div>			
+<!-- 						
+			
+			<div dt:conf="tbMedicamento">
+			   <div dt:confType="export" dt:type="pdf" dt:cssClass="btn btn-info" dt:url="@{/export.pdf}"></div>
+			   <div dt:confType="export" dt:type="csv" dt:cssClass="btn btn-success" dt:url="@{/export.csv}"></div>
+			</div>
+
+			<table id="tbMedicamento" 
+				   dt:table="true"
+				   dt:theme="bootstrap2"
+				   dt:themeOption="tablecloth"
+				   class="table table-dark table-striped table-bordered table-condensed"
+				   dt:sortable="false"
+				   dt:pageable="true"
+				   dt:displaylength="15"
+				   dt:info="true"
+				   >
+				   <thead>
+				      <tr>
+				         <th style="text-align: center;" data-class="expand">Codigo</th>
+				         <th>Descricao</th>
+				      </tr>
+				   </thead>
+				   <tbody>
+				      <tr th:each="medicamento : ${medicamentos}">
+				         <td th:text="${medicamento?.id}" style=" text-align: center;">id</td>
+				         <td th:text="${medicamento?.descricao}">descricao</td>
+				      </tr>
+				   </tbody>
+			</table>
+
+			<table id="tbMedicamentoThymeLeafValidaNulo" 
+				   style="border: thin; border-color: red; background-color: inactiveborder;"
+				   class="table table-dark table-striped table-bordered table-condensed"
+				   >
+                 <thead>
+                     <tr>
+                         <th th:text="Codigo"></th>
+                         <th th:text="Descricao"></th>
+                     </tr>
+                 </thead>
+                 <tbody th:if="${#objects.nullSafe(medicamentos, false)}">
+                    <tr th:each="row, rowStat : ${medicamentos}">
+			   <td th:text="${rowStat.Count}"></td>                           
+                        <td th:text="${row.id}"></td>
+                        <td th:text="${row.descricao}"></td>
+                    </tr>
+                 </tbody>
+             </table>
+ -->             
+			<h2 th:text="Lista de medicamentos"></h2>
+
+			<table id="example" class="table table-dark table-striped table-bordered table-condensed">
+				   <thead>
+				      <tr>
+				         <th style="text-align: center;" data-class="expand">Codigo jquery</th>
+				         <th>Descricao</th>
+					     <th>
+					        <button type="submit" name="addRow" th:text="#{medicamentos.row.add}">Add row</button>
+					     </th>				         
+				      </tr>
+				   </thead>
+				   <tbody>
+				      <tr th:each="medicamento, rowStat : ${medicamentos}">
+				         <td th:text="${medicamento?.id}" style=" text-align: center;">id</td>
+				         <td th:input="${medicamento?.descricao}">descricao</td>
+					     <td>
+					        <select th:field="*{medicamento[__${rowStat.index}__].variety}">
+					          <option th:each="var : ${medicamento}" 
+					                  th:value="${var.id}" 
+					                  th:text="${var.name}">Thymus Thymi</option>
+					        </select>
+					     </td>				         
+				      </tr>
+				   </tbody>
+			</table>
+			
+             <div th:if="${ not #medicamentos.isEmpty()}">
+                 Encontrados <span th:text="${#medicamentos.size()}"></span> Medicamentos
+             </div>			
+			
+		</div>
+		
+		<div th:replace="fragments/layout :: footer"></div>
+		
+		<table id="list2"></table>
+		<div id="pager2"></div>
+		
+	</body>
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+		    var table = $('#example').DataTable();
+
+		    $('button').click( function() {
+		        var data = table.$('input, select').serialize();
+			 	alert('entrou aqui');
+		        alert(
+		            "The following data would have been submitted to the server: \n\n"+
+		            data.substr( 0, 120 )+'...'
+		        );
+		        return false;
+		    } );
+		} );
+	
+	</script>
+</html>
