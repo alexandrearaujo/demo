@@ -1,9 +1,10 @@
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.TipoRelatorio;
+import org.springframework.data.repository.CrudRepository;
 
-public interface TipoRelatorioRepository extends GenericDao<TipoRelatorio>
+import br.com.mv.dispensacaomedicamento.model.TipoRelatorio;
+
+public interface TipoRelatorioRepository extends CrudRepository<TipoRelatorio,Long>
 {
 
 }

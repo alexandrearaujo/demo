@@ -1,9 +1,10 @@
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.ItemSolicitacaoMedicamentoApac;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ItemSolicitacaoMedicamentoApacRepository extends GenericDao<ItemSolicitacaoMedicamentoApac>
+import br.com.mv.dispensacaomedicamento.model.ItemSolicitacaoMedicamentoApac;
+
+public interface ItemSolicitacaoMedicamentoApacRepository extends CrudRepository<ItemSolicitacaoMedicamentoApac, Long>
 {
 
 }

@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.mv.dispensacaomedicamento.model.FarmaciaEstabelecimento;
-import br.com.mv.dispensacaomedicamento.model.FarmaciaEstabelecimentoDTO;
 
 @Repository
 public interface FarmaciaEstabelecimentoRepository extends CrudRepository<FarmaciaEstabelecimento, Long>

@@ -3,14 +3,11 @@
  */
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.TipoFrequencia;
+import org.springframework.data.repository.CrudRepository;
 
-/**
- * @author joao.franco
- *
- */
-public interface TipoFrequenciaRepository extends GenericDao<TipoFrequencia>
+import br.com.mv.dispensacaomedicamento.model.TipoFrequencia;
+
+public interface TipoFrequenciaRepository extends CrudRepository<TipoFrequencia,Long>
 {
 
 }

@@ -1,9 +1,10 @@
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.FormaFarmaceutica;
+import org.springframework.data.repository.CrudRepository;
 
-public interface FormaFarmaceuticaRepository extends GenericDao<FormaFarmaceutica>
+import br.com.mv.dispensacaomedicamento.model.FormaFarmaceutica;
+
+public interface FormaFarmaceuticaRepository extends CrudRepository<FormaFarmaceutica,Long>
 {
 
 }

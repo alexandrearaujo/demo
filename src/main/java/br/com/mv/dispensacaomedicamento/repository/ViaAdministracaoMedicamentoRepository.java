@@ -1,9 +1,10 @@
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.ViaAdministracaoMedicamento;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ViaAdministracaoMedicamentoRepository extends GenericDao<ViaAdministracaoMedicamento>
+import br.com.mv.dispensacaomedicamento.model.ViaAdministracaoMedicamento;
+
+public interface ViaAdministracaoMedicamentoRepository extends CrudRepository<ViaAdministracaoMedicamento,Long>
 {
 
 }

@@ -1,9 +1,10 @@
 package br.com.mv.dispensacaomedicamento.repository;
 
-import br.com.mv.commons.web.dao.GenericDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.MotivoDevolucaoMedicamento;
+import org.springframework.data.repository.CrudRepository;
 
-public interface MotivoDevolucaoMedicamentoRepository extends GenericDao<MotivoDevolucaoMedicamento>
+import br.com.mv.dispensacaomedicamento.model.MotivoDevolucaoMedicamento;
+
+public interface MotivoDevolucaoMedicamentoRepository extends CrudRepository<MotivoDevolucaoMedicamento,Long>
 {
 
 }
