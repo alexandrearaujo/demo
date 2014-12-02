@@ -12,12 +12,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.dao.ViaAdministracaoMedicament
 import br.com.mv.regulacao.dispensacaomedicamento.model.ViaAdministracaoMedicamento;
 
 @Named("viaAdministracaoMedicamentoManager")
-public class ViaAdministracaoMedicamentoBusiness extends GenericManagerImpl<ViaAdministracaoMedicamento, ViaAdministracaoMedicamentoDao> implements ViaAdministracaoMedicamentoManager
+public class ViaAdministracaoMedicamentoBusiness extends GenericManagerImpl<ViaAdministracaoMedicamento, ViaAdministracaoMedicamentoRepository> implements ViaAdministracaoMedicamentoManager
 {
 
     @Inject
     @Override
-    public void setDao(ViaAdministracaoMedicamentoDao dao)
+    public void setDao(ViaAdministracaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

@@ -15,13 +15,13 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.TipoRelatorio;
 
 
 @Named("tipoRelatorioManager")
-public class TipoRelatorioBusiness extends GenericManagerImpl<TipoRelatorio, TipoRelatorioDao> implements TipoRelatorioManager
+public class TipoRelatorioBusiness extends GenericManagerImpl<TipoRelatorio, TipoRelatorioRepository> implements TipoRelatorioManager
 {
 
     
     @Inject
     @Override
-    public void setDao(TipoRelatorioDao dao)
+    public void setDao(TipoRelatorioRepository dao)
     {
         super.setDao(dao);
     }

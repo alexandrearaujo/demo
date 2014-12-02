@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:br.com.mv.dispensacao.Application</config>
+		<config>java:br.com.mv.dispensacaomedicamento.Application</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

@@ -12,12 +12,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.ItemSolicitacaoMedicamen
 
 
 @Named("itemSolicitacaoMedicamentoApacManager")
-public class ItemSolicitacaoMedicamentoApacBusiness extends GenericManagerImpl<ItemSolicitacaoMedicamentoApac, ItemSolicitacaoMedicamentoApacDao> implements ItemSolicitacaoMedicamentoApacManager
+public class ItemSolicitacaoMedicamentoApacBusiness extends GenericManagerImpl<ItemSolicitacaoMedicamentoApac, ItemSolicitacaoMedicamentoApacRepository> implements ItemSolicitacaoMedicamentoApacManager
 {
 
     @Inject
     @Override
-    public void setDao(ItemSolicitacaoMedicamentoApacDao dao)
+    public void setDao(ItemSolicitacaoMedicamentoApacRepository dao)
     {
         super.setDao(dao);
     }    

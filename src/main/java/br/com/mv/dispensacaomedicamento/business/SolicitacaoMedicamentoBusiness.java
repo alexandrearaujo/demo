@@ -22,7 +22,7 @@ import br.com.mv.regulacao.model.geral.Estabelecimento;
 import br.com.mv.regulador.model.BuscaVagaMunicipio;
 
 @Named("solicitacaoMedicamentoManager")
-public class SolicitacaoMedicamentoBusiness extends GenericManagerImpl<SolicitacaoMedicamento, SolicitacaoMedicamentoDao> implements SolicitacaoMedicamentoManager
+public class SolicitacaoMedicamentoBusiness extends GenericManagerImpl<SolicitacaoMedicamento, SolicitacaoMedicamentoRepository> implements SolicitacaoMedicamentoManager
 {
     
 
@@ -31,7 +31,7 @@ public class SolicitacaoMedicamentoBusiness extends GenericManagerImpl<Solicitac
     
     @Inject
     @Override
-    public void setDao(SolicitacaoMedicamentoDao dao)
+    public void setDao(SolicitacaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

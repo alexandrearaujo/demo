@@ -15,12 +15,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.dao.TipoReceituarioDao;
 import br.com.mv.regulacao.dispensacaomedicamento.model.TipoReceituario;
 
 @Named("tipoReceituarioManager")
-public class TipoReceituarioBusiness extends GenericManagerImpl<TipoReceituario, TipoReceituarioDao> implements TipoReceituarioManager
+public class TipoReceituarioBusiness extends GenericManagerImpl<TipoReceituario, TipoReceituarioRepository> implements TipoReceituarioManager
 {
 
     @Inject
     @Override
-    public void setDao(TipoReceituarioDao dao)
+    public void setDao(TipoReceituarioRepository dao)
     {
         super.setDao(dao);
     }

@@ -23,14 +23,14 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.MotivoDevolucaoMedicamen
 import br.com.mv.sigas.model.geral.User;
 
 @Named("motivoDevolucaoMedicamentoManager")
-public class MotivoDevolucaoMedicamentoBusiness extends GenericManagerImpl<MotivoDevolucaoMedicamento, MotivoDevolucaoMedicamentoDao> implements MotivoDevolucaoMedicamentoManager
+public class MotivoDevolucaoMedicamentoBusiness extends GenericManagerImpl<MotivoDevolucaoMedicamento, MotivoDevolucaoMedicamentoRepository> implements MotivoDevolucaoMedicamentoManager
 {
 
     
     
     @Inject
     @Override
-    public void setDao(MotivoDevolucaoMedicamentoDao dao)
+    public void setDao(MotivoDevolucaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

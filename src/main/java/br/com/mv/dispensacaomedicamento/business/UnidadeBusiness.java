@@ -16,12 +16,12 @@ import br.com.mv.commons.web.util.hibernate.transform.ProjectionFilter;
 import br.com.mv.regulacao.dispensacaomedicamento.dao.UnidadeDao;
 import br.com.mv.regulacao.dispensacaomedicamento.model.Unidade;
 @Named("unidadeManager")
-public class UnidadeBusiness extends GenericManagerImpl<Unidade, UnidadeDao> implements UnidadeManager
+public class UnidadeBusiness extends GenericManagerImpl<Unidade, UnidadeRepository> implements UnidadeManager
 {
 
     @Inject
     @Override
-    public void setDao(UnidadeDao dao){
+    public void setDao(UnidadeRepository dao){
         super.setDao(dao);
     }
     

@@ -24,14 +24,14 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.SituacaoSolicitacaoMedic
 import br.com.mv.regulacao.dispensacaomedicamento.model.SolicitacaoMedicamento;
 import br.com.mv.regulacao.dispensacaomedicamento.model.Unidade;
 @Named("itemUnidadeManager")
-public class ItemUnidadeBusiness extends GenericManagerImpl<ItemUnidade, ItemUnidadeDao> implements ItemUnidadeManager
+public class ItemUnidadeBusiness extends GenericManagerImpl<ItemUnidade, ItemUnidadeRepository> implements ItemUnidadeManager
 {
 
     @Inject
     SolicitacaoMedicamentoManager solicitacaoMedicamentoManager;
     @Inject
     @Override
-    public void setDao(ItemUnidadeDao dao)
+    public void setDao(ItemUnidadeRepository dao)
     {
         super.setDao(dao);
         

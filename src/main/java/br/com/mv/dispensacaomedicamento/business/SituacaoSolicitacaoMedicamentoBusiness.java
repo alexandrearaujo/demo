@@ -14,12 +14,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.dao.MedicamentoDao;
 import br.com.mv.regulacao.dispensacaomedicamento.dao.SituacaoSolicitacaoMedicamentoDao;
 import br.com.mv.regulacao.dispensacaomedicamento.model.SituacaoSolicitacaoMedicamento;
 @Named("situacaoSolicitacaoMedicamentoManager")
-public class SituacaoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<SituacaoSolicitacaoMedicamento, SituacaoSolicitacaoMedicamentoDao> implements SituacaoSolicitacaoMedicamentoManager
+public class SituacaoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<SituacaoSolicitacaoMedicamento, SituacaoSolicitacaoMedicamentoRepository> implements SituacaoSolicitacaoMedicamentoManager
 {
 
     @Inject
     @Override
-    public void setDao(SituacaoSolicitacaoMedicamentoDao dao)
+    public void setDao(SituacaoSolicitacaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

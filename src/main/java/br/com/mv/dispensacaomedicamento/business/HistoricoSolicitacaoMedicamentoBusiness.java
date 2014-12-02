@@ -17,12 +17,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.HistoricoSolicitacaoMedi
 import br.com.mv.regulacao.dispensacaomedicamento.model.SolicitacaoMedicamento;
 
 @Named("historicoSolicitacaoMedicamentoManager")
-public class HistoricoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<HistoricoSolicitacaoMedicamento, HistoricoSolicitacaoMedicamentoDao> implements HistoricoSolicitacaoMedicamentoManager
+public class HistoricoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<HistoricoSolicitacaoMedicamento, HistoricoSolicitacaoMedicamentoRepository> implements HistoricoSolicitacaoMedicamentoManager
 {
     
     @Inject
     @Override
-    public void setDao(HistoricoSolicitacaoMedicamentoDao dao)
+    public void setDao(HistoricoSolicitacaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

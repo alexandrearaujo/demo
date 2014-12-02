@@ -15,13 +15,13 @@ import br.com.mv.commons.web.util.hibernate.transform.ProjectionFilter;
 import br.com.mv.regulacao.dispensacaomedicamento.dao.ItemSolicitacaoMedicamentoDao;
 import br.com.mv.regulacao.dispensacaomedicamento.model.ItemSolicitacaoMedicamento;
 @Named("itemSolicitacaoMedicamentoManager")
-public class ItemSolicitacaoMedicamentoBusiness extends GenericManagerImpl<ItemSolicitacaoMedicamento, ItemSolicitacaoMedicamentoDao> implements ItemSolicitacaoMedicamentoManager
+public class ItemSolicitacaoMedicamentoBusiness extends GenericManagerImpl<ItemSolicitacaoMedicamento, ItemSolicitacaoMedicamentoRepository> implements ItemSolicitacaoMedicamentoManager
 {
 
     
     @Inject
     @Override
-    public void setDao(ItemSolicitacaoMedicamentoDao dao)
+    public void setDao(ItemSolicitacaoMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

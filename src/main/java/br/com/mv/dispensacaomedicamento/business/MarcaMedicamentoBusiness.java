@@ -26,11 +26,11 @@ import br.com.mv.sigas.model.geral.User;
  */
 
 @Named("marcaMedicamentoManager")
-public class MarcaMedicamentoBusiness extends GenericManagerImpl<MarcaMedicamento, MarcaMedicamentoDao> implements MarcaMedicamentoManager
+public class MarcaMedicamentoBusiness extends GenericManagerImpl<MarcaMedicamento, MarcaMedicamentoRepository> implements MarcaMedicamentoManager
 {
     @Inject
     @Override
-    public void setDao(MarcaMedicamentoDao dao)
+    public void setDao(MarcaMedicamentoRepository dao)
     {
         super.setDao(dao);
     }

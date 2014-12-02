@@ -31,12 +31,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.TipoFrequencia;
      *
      */
     @Named("tipoFrequenciaManager")
-    public class TipoFrequenciaBusiness extends GenericManagerImpl<TipoFrequencia,TipoFrequenciaDao> implements TipoFrequenciaManager
+    public class TipoFrequenciaBusiness extends GenericManagerImpl<TipoFrequencia,TipoFrequenciaRepository> implements TipoFrequenciaManager
     {
         
         @Inject
         @Override
-        public void setDao (TipoFrequenciaDao dao){
+        public void setDao (TipoFrequenciaRepository dao){
             super.setDao(dao);
         }
         

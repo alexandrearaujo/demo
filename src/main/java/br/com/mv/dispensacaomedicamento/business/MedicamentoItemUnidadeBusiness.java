@@ -23,13 +23,13 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.SituacaoSolicitacaoMedic
 import br.com.mv.regulacao.dispensacaomedicamento.model.dicionario.EnumCondicaoSql;
 
 @Named("medicamentoItemUnidadeManager")
-public class MedicamentoItemUnidadeBusiness extends GenericManagerImpl<MedicamentoItemUnidade, MedicamentoItemUnidadeDao> implements MedicamentoItemUnidadeManager
+public class MedicamentoItemUnidadeBusiness extends GenericManagerImpl<MedicamentoItemUnidade, MedicamentoItemUnidadeRepository> implements MedicamentoItemUnidadeManager
 {
     @Inject
     SituacaoSolicitacaoMedicamentoManager situacaoSolicitacao;
     @Inject
     @Override
-    public void setDao(MedicamentoItemUnidadeDao dao)
+    public void setDao(MedicamentoItemUnidadeRepository dao)
     {
         super.setDao(dao);
     }

@@ -17,12 +17,12 @@ import br.com.mv.regulacao.dispensacaomedicamento.dao.FormaFarmaceuticaDao;
 import br.com.mv.regulacao.dispensacaomedicamento.model.FormaFarmaceutica;
 
 @Named("formaFarmaceuticaManager")
-public class FormaFarmaceuticaBusiness extends GenericManagerImpl<FormaFarmaceutica, FormaFarmaceuticaDao> implements FormaFarmaceuticaManager
+public class FormaFarmaceuticaBusiness extends GenericManagerImpl<FormaFarmaceutica, FormaFarmaceuticaRepository> implements FormaFarmaceuticaManager
 {
 
     @Inject
     @Override
-    public void setDao(FormaFarmaceuticaDao dao)
+    public void setDao(FormaFarmaceuticaRepository dao)
     {
         super.setDao(dao);
         

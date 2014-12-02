@@ -23,7 +23,7 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.FarmaciaEstabelecimentoD
 import br.com.mv.regulacao.model.geral.Estabelecimento;
 
 @Named("FarmaciaEstabelecimentoManager")
-public class FarmaciaEstabelecimentoBusiness extends GenericManagerImpl<FarmaciaEstabelecimento, FarmaciaEstabelecimentoDao> implements FarmaciaEstabelecimentoManager
+public class FarmaciaEstabelecimentoBusiness extends GenericManagerImpl<FarmaciaEstabelecimento, FarmaciaEstabelecimentoRepository> implements FarmaciaEstabelecimentoManager
 {
     
     @Inject
@@ -36,7 +36,7 @@ public class FarmaciaEstabelecimentoBusiness extends GenericManagerImpl<Farmacia
 
     @Inject
     @Override
-    public void setDao(FarmaciaEstabelecimentoDao dao)
+    public void setDao(FarmaciaEstabelecimentoRepository dao)
     {
         super.setDao(dao);
     }

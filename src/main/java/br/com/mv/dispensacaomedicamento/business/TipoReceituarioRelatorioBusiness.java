@@ -23,7 +23,7 @@ import br.com.mv.regulacao.dispensacaomedicamento.model.TipoReceituarioRelatorio
 
 
 @Named("TipoReceituarioRelatorioManager")
-public class TipoReceituarioRelatorioBusiness extends GenericManagerImpl<TipoReceituarioRelatorio, TipoReceituarioRelatorioDao> implements TipoReceituarioRelatorioManager
+public class TipoReceituarioRelatorioBusiness extends GenericManagerImpl<TipoReceituarioRelatorio, TipoReceituarioRelatorioRepository> implements TipoReceituarioRelatorioManager
 {
     final String CNT_TIPO_RECEITUARIO_PK = "DBAMVFOR.CNT_TIPO_RECEITUARIO_PK";
     final String CNT_TIPO_RECEITUARIO_1_CK = "DBAMVFOR.CNT_TIPO_RECEITUARIO_1_CK";
@@ -34,7 +34,7 @@ public class TipoReceituarioRelatorioBusiness extends GenericManagerImpl<TipoRec
     
     @Inject
     @Override
-    public void setDao(TipoReceituarioRelatorioDao dao)
+    public void setDao(TipoReceituarioRelatorioRepository dao)
     {
         super.setDao(dao);
     }
