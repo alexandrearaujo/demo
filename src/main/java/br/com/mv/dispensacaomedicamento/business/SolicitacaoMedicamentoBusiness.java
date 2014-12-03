@@ -3,31 +3,27 @@ package br.com.mv.dispensacaomedicamento.business;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.mv.commons.web.business.GenericManagerImpl;
-import br.com.mv.commons.web.exception.NotUniqueIdException;
-import br.com.mv.commons.web.util.hibernate.transform.ProjectionFilter;
-import br.com.mv.geral.model.VinculoProfissionalDTO;
-import br.com.mv.regulacao.dispensacaomedicamento.dao.SolicitacaoMedicamentoDao;
-import br.com.mv.regulacao.dispensacaomedicamento.exception.DispensacaoMedicamentoException;
-import br.com.mv.regulacao.dispensacaomedicamento.model.HistoricoSolicitacaoMedicamento;
-import br.com.mv.regulacao.dispensacaomedicamento.model.SituacaoSolicitacaoMedicamento;
-import br.com.mv.regulacao.dispensacaomedicamento.model.SolicitacaoMedicamento;
-import br.com.mv.regulacao.dispensacaomedicamento.model.SolicitacaoMedicamentoDTO;
-import br.com.mv.regulacao.model.geral.Estabelecimento;
-import br.com.mv.regulador.model.BuscaVagaMunicipio;
+import br.com.mv.dispensacaomedicamento.exception.DispensacaoMedicamentoException;
+import br.com.mv.dispensacaomedicamento.model.Estabelecimento;
+import br.com.mv.dispensacaomedicamento.model.HistoricoSolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.SituacaoSolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.SolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.SolicitacaoMedicamentoDTO;
+import br.com.mv.dispensacaomedicamento.model.VinculoProfissionalDTO;
+import br.com.mv.dispensacaomedicamento.repository.SolicitacaoMedicamentoRepository;
 
-@Named("solicitacaoMedicamentoManager")
-public class SolicitacaoMedicamentoBusiness extends GenericManagerImpl<SolicitacaoMedicamento, SolicitacaoMedicamentoRepository> implements SolicitacaoMedicamentoManager
-{
+@Service
+@Transactional
+public class SolicitacaoMedicamentoBusiness {
     
 
-    @Inject
-    private HistoricoSolicitacaoMedicamentoManager historicoSolicitacaoMedicamentoManager;
+    @Autowired
+    private HistoricoSolicitacaoMedicamentoBussines historicoSolicitacaoMedicamentoBusiness;
     
     @Inject
     @Override

@@ -4,31 +4,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import br.com.mv.commons.web.business.GenericManagerImpl;
-import br.com.mv.commons.web.exception.NotUniqueIdException;
-import br.com.mv.commons.web.util.hibernate.transform.ProjectionFilter;
-import br.com.mv.regulacao.dispensacaomedicamento.dao.HistoricoSolicitacaoMedicamentoDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.HistoricoSolicitacaoMedicamento;
-import br.com.mv.regulacao.dispensacaomedicamento.model.SolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.HistoricoSolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.SolicitacaoMedicamento;
+import br.com.mv.dispensacaomedicamento.repository.HistoricoSolicitacaoMedicamentoRepository;
 
-@Named("historicoSolicitacaoMedicamentoManager")
-public class HistoricoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<HistoricoSolicitacaoMedicamento, HistoricoSolicitacaoMedicamentoRepository> implements HistoricoSolicitacaoMedicamentoManager
+public class HistoricoSolicitacaoMedicamentoBusiness
 {
-    
-    @Inject
-    @Override
-    public void setDao(HistoricoSolicitacaoMedicamentoRepository dao)
-    {
-        super.setDao(dao);
-    }
 
-    @Override
-    public HistoricoSolicitacaoMedicamento salvarHistoricoSolicitacaoMedicamento(SolicitacaoMedicamento solicitacaoMedicamento) throws DataIntegrityViolationException, NotUniqueIdException,
+    @Autowired
+    private HistoricoSolicitacaoMedicamentoRepository historicoSolicitacaoMedicamentoRepository;
+	
+    public HistoricoSolicitacaoMedicamento salvarHistoricoSolicitacaoMedicamento(SolicitacaoMedicamento solicitacaoMedicamento) throws DataIntegrityViolationException,
             InstantiationException, IllegalAccessException, ClassNotFoundException
     {
         HistoricoSolicitacaoMedicamento historicoSolicitacaoMedicamento = new HistoricoSolicitacaoMedicamento();
@@ -41,47 +30,28 @@ public class HistoricoSolicitacaoMedicamentoBusiness extends GenericManagerImpl<
         return salvar(historicoSolicitacaoMedicamento);
     }
 
-    @Override
-    public HistoricoSolicitacaoMedicamento salvar(HistoricoSolicitacaoMedicamento historicoSolicitacaoMedicamento) throws DataIntegrityViolationException, NotUniqueIdException,
+    public HistoricoSolicitacaoMedicamento salvar(HistoricoSolicitacaoMedicamento historicoSolicitacaoMedicamento) throws DataIntegrityViolationException,
             InstantiationException, IllegalAccessException, ClassNotFoundException
     {
-        return save(historicoSolicitacaoMedicamento, true);
+        return historicoSolicitacaoMedicamentoRepository.save(historicoSolicitacaoMedicamento);
     }
 
-    @Override
-    public void atualizar() throws DataIntegrityViolationException, NotUniqueIdException, InstantiationException,
+    public void atualizar() throws DataIntegrityViolationException, InstantiationException,
             IllegalAccessException, ClassNotFoundException
     {
-        // TODO Auto-generated method stub
         
     }
 
-    @Override
-    public void excluir(HistoricoSolicitacaoMedicamento historicoSolicitacaoMedicamento) throws DataIntegrityViolationException, NotUniqueIdException, InstantiationException, IllegalAccessException,
+    public void excluir(HistoricoSolicitacaoMedicamento historicoSolicitacaoMedicamento) throws DataIntegrityViolationException, InstantiationException, IllegalAccessException,
             ClassNotFoundException
     {
-        //TODO removendo o objeto transiente. Não era para precisar removar, verificar com a arquitetura o por que do erro.
         historicoSolicitacaoMedicamento.setSolicitacaoMedicamento(null);
-        delete(historicoSolicitacaoMedicamento, true);
+        historicoSolicitacaoMedicamentoRepository.delete(historicoSolicitacaoMedicamento);
     }
 
-    @Override
     public Collection<HistoricoSolicitacaoMedicamento> buscarHistorioSolicitacaoMedicamentoPorSolicitacaoMedicamento(SolicitacaoMedicamento solicitacaoMedicamento) 
     {
-        ArrayList<ProjectionFilter> listaProjection = new ArrayList<ProjectionFilter>();
-        
-        listaProjection.add(new ProjectionFilter("id"));
-        listaProjection.add(new ProjectionFilter("situacaoSolicitacaoMedicamento.id"));
-        listaProjection.add(new ProjectionFilter("solicitacaoMedicamento.id", solicitacaoMedicamento.getId()));
-        listaProjection.add(new ProjectionFilter("usuario.id"));
-        listaProjection.add(new ProjectionFilter("dataCadastro"));
-        
-        ProjectionFilter[] projectionFilters = new ProjectionFilter[listaProjection.size()];
-
-        listaProjection.toArray(projectionFilters);
-        
-        
-        return get(0, projectionFilters);
+        return historicoSolicitacaoMedicamentoRepository.buscarHistorioSolicitacaoMedicamentoPorSolicitacaoMedicamento(solicitacaoMedicamento);
     }
     
     
