@@ -3,6 +3,7 @@
  */
 package br.com.mv.dispensacaomedicamento.repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -43,7 +44,7 @@ public interface EnderecoEntregaPacienteRepository extends CrudRepository<Endere
 		       "	and eep.cd_cidadao = ci.cd_cidadao "+
 		       "	and u.cd_uf = eep.cd_uf "+
 		       "	and m.id_munic = eep.cd_municipio", nativeQuery=true)
-	public EnderecoEntregaPaciente buscarEnderecoEntrega(@Param("idCidadao") Long idCidadao);
+	public EnderecoEntregaPaciente buscarEnderecoEntrega(@Param("idCidadao") Long idCidadao, Pageable page);
 
 	@Query(value=
 			 "select " + 
