@@ -1,41 +1,23 @@
 package br.com.mv.dispensacaomedicamento.business;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.mv.commons.web.business.GenericManagerImpl;
-import br.com.mv.commons.web.util.hibernate.transform.ProjectionFilter;
-import br.com.mv.regulacao.dispensacaomedicamento.dao.ViaAdministracaoMedicamentoDao;
-import br.com.mv.regulacao.dispensacaomedicamento.model.ViaAdministracaoMedicamento;
+import br.com.mv.dispensacaomedicamento.model.ViaAdministracaoMedicamento;
+import br.com.mv.dispensacaomedicamento.repository.ViaAdministracaoMedicamentoRepository;
 
-@Named("viaAdministracaoMedicamentoManager")
-public class ViaAdministracaoMedicamentoBusiness extends GenericManagerImpl<ViaAdministracaoMedicamento, ViaAdministracaoMedicamentoRepository> implements ViaAdministracaoMedicamentoManager
+@Service
+@Transactional
+public class ViaAdministracaoMedicamentoBusiness
 {
 
-    @Inject
-    @Override
-    public void setDao(ViaAdministracaoMedicamentoRepository dao)
-    {
-        super.setDao(dao);
-    }
+	@Autowired
+    private ViaAdministracaoMedicamentoRepository viaAdministracaoMedicamentoRepository;
     
-    @Override
-    public Collection<ViaAdministracaoMedicamento> listarViaAdministracaoMedicamentoAtivo()
-    {
-        ArrayList<ProjectionFilter> arrayList = new ArrayList<ProjectionFilter>();
-        
-        arrayList.add(new ProjectionFilter("id"));
-        arrayList.add(new ProjectionFilter("descricao"));
-        arrayList.add(new ProjectionFilter("ativo", true));
-        
-        ProjectionFilter [] projectionFilters = new ProjectionFilter[arrayList.size()];
-        arrayList.toArray(projectionFilters);
-        
-        return get(0, projectionFilters);
-        
+	public Collection<ViaAdministracaoMedicamento> listarViaAdministracaoMedicamentoAtivo() {
+		return viaAdministracaoMedicamentoRepository.listarViaAdministracaoMedicamentoAtivo();
     }
-    
 }
